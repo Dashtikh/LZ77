@@ -5,7 +5,6 @@ code = code.replace(",", "")
 decode = ""
 counter = 0
 start = 0
-end = 0
 while counter < len(code):
     if code[counter] == "0":
         decode = decode + code[counter + 2]
