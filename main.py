@@ -11,9 +11,9 @@ while counter < len(code):
         decode = decode + code[counter + 2]
         counter = counter + 3
     else:
-        start = (-1) * int(code[counter])
-        end = start + int(code[counter + 1])
-        decode = decode + decode[start:end] + code[counter + 2]
+        for letter in range(0, int(code[counter + 1])):
+            start = (-1) * int(code[counter])
+            decode = decode + decode[start]
+        decode = decode + code[counter + 2]
         counter = counter + 3
-
 print(decode)
