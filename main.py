@@ -1,24 +1,7 @@
-# module for lz77 decoder and encoder
+from lz77 import *
 
-# decoder function
-def decoder(code):
-    code = code.replace("<", "")
-    code = code.replace(">", "")
-    code = code.replace(",", "")
-    decode = ""
-    counter = 0
+code = input("please insert a coded string: ")
 
-    start = 0
+decode = decoder(code)
 
-    while counter < len(code):
-        if code[counter] == "0":
-            decode = decode + code[counter + 2]
-            counter = counter + 3
-        else:
-            for letter in range(0, int(code[counter + 1])):
-                start = (-1) * int(code[counter])
-                decode = decode + decode[start]
-            decode = decode + code[counter + 2]
-            counter = counter + 3
-
-    return decode
+print(decode)
