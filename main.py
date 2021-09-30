@@ -77,16 +77,18 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-
+        # when Encode Button clicked
         self.encodeButton.clicked.connect(lambda: self.encodeClicked(self.inputData.toPlainText()))
 
+        # when Decode Button clicked
         self.decodeButton.clicked.connect(lambda: self.decodeClicked(self.inputData.toPlainText()))
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "LZ77 - LZ78"))
         self.labelEnter.setText(_translate("MainWindow", "Enter encoded or decoded data"))
         self.radioLz77.setText(_translate("MainWindow", "lz77"))
+        self.radioLz77.setChecked(True)
         self.radioLz78.setText(_translate("MainWindow", "lz78"))
         self.encodeButton.setText(_translate("MainWindow", "Encode"))
         self.encodeResultLabel.setText(_translate("MainWindow", "Encoded data"))
@@ -96,11 +98,16 @@ class Ui_MainWindow(object):
         self.decodeButton.setText(_translate("MainWindow", "Decode"))
 
     def encodeClicked(self, data):
-        self.encodedData.setText(encoder77(data))
+        if self.radioLz77.isChecked():
+            self.encodedData.setText(encoder77(data))
+        else:
+            print("Lz78 encoder")
 
     def decodeClicked(self, data):
-        self.decodedData.setText(decoder77(data))
-        # self.decodedData.setText(decoder78(data))
+        if self.radioLz77.isChecked():
+            self.decodedData.setText(decoder77(data))
+        else:
+            self.decodedData.setText(decoder78(data))
 
 if __name__ == "__main__":
     import sys
