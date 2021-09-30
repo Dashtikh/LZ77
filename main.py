@@ -78,6 +78,8 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
 
+        self.encodeButton.clicked.connect(lambda: self.encodeClicked(self.inputData.toPlainText()))
+
         self.decodeButton.clicked.connect(lambda: self.decodeClicked(self.inputData.toPlainText()))
 
     def retranslateUi(self, MainWindow):
@@ -93,8 +95,10 @@ class Ui_MainWindow(object):
         self.decodedData.setText(_translate("MainWindow", ""))
         self.decodeButton.setText(_translate("MainWindow", "Decode"))
 
-    def decodeClicked(self, data):
+    def encodeClicked(self, data):
+        self.encodedData.setText(encoder77(data))
 
+    def decodeClicked(self, data):
         self.decodedData.setText(decoder77(data))
         # self.decodedData.setText(decoder78(data))
 
