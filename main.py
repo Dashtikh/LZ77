@@ -57,12 +57,14 @@ class Ui_MainWindow(object):
         font.setPointSize(11)
         self.encodedData.setFont(font)
         self.encodedData.setObjectName("encodedData")
+        self.encodedData.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
         self.decodedData = QtWidgets.QLabel(self.centralwidget)
         self.decodedData.setGeometry(QtCore.QRect(180, 340, 521, 31))
         font = QtGui.QFont()
         font.setPointSize(11)
         self.decodedData.setFont(font)
         self.decodedData.setObjectName("decodedData")
+        self.decodedData.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
         self.decodeButton = QtWidgets.QPushButton(self.centralwidget)
         self.decodeButton.setGeometry(QtCore.QRect(400, 140, 121, 31))
         font = QtGui.QFont()
@@ -103,11 +105,15 @@ class Ui_MainWindow(object):
         else:
             print("Lz78 encoder")
 
+        self.encodedData.adjustSize()
+
     def decodeClicked(self, data):
         if self.radioLz77.isChecked():
             self.decodedData.setText(decoder77(data))
         else:
             self.decodedData.setText(decoder78(data))
+
+        self.decodedData.adjustSize()
 
 if __name__ == "__main__":
     import sys
