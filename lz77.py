@@ -1,7 +1,7 @@
 # module for lz77 decoder and encoder
 
 # decoder function
-def decoder(code):
+def decoder77(code):
     code = code.replace("<", "")
     code = code.replace(">", "")
     code = code.replace(",", "")

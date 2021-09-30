@@ -1,4 +1,5 @@
 # module for lz78 decoder and encoder
+
 # decoder function
 def decoder78(code):
     code = code.replace("<", "")
