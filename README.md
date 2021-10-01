@@ -1,1 +1,1 @@
-# LZ77_Decoder
+# LZ77 Encoder and Decoder
