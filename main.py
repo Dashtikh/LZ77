@@ -1,7 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from lz77 import *
-from lz78 import *
-
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -15,58 +13,56 @@ class Ui_MainWindow(object):
         font.setPointSize(13)
         self.labelEnter.setFont(font)
         self.labelEnter.setObjectName("labelEnter")
+        self.labelEnter.setStyleSheet("color: darkblue;")
         self.inputData = QtWidgets.QTextEdit(self.centralwidget)
         self.inputData.setGeometry(QtCore.QRect(40, 80, 631, 31))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.inputData.setFont(font)
         self.inputData.setObjectName("inputData")
-        self.radioLz77 = QtWidgets.QRadioButton(self.centralwidget)
-        self.radioLz77.setGeometry(QtCore.QRect(40, 150, 95, 20))
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        self.radioLz77.setFont(font)
-        self.radioLz77.setObjectName("radioLz77")
-        self.radioLz78 = QtWidgets.QRadioButton(self.centralwidget)
-        self.radioLz78.setGeometry(QtCore.QRect(120, 150, 95, 20))
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        self.radioLz78.setFont(font)
-        self.radioLz78.setObjectName("radioLz78")
         self.encodeButton = QtWidgets.QPushButton(self.centralwidget)
-        self.encodeButton.setGeometry(QtCore.QRect(260, 140, 121, 31))
+        self.encodeButton.setGeometry(QtCore.QRect(40, 140, 121, 31))
+        self.encodeButton.setStyleSheet("background-color: #009191; color: #fff; border-radius: 12px;")
         font = QtGui.QFont()
         font.setPointSize(10)
         self.encodeButton.setFont(font)
         self.encodeButton.setObjectName("encodeButton")
         self.encodeResultLabel = QtWidgets.QLabel(self.centralwidget)
-        self.encodeResultLabel.setGeometry(QtCore.QRect(50, 240, 111, 31))
+        self.encodeResultLabel.setGeometry(QtCore.QRect(50, 240, 114, 31))
+        self.encodeResultLabel.setStyleSheet("background-color: lightblue;border: 1px ridge black;")
         font = QtGui.QFont()
         font.setPointSize(11)
         self.encodeResultLabel.setFont(font)
+        self.encodeResultLabel.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
         self.encodeResultLabel.setObjectName("encodeResultLabel")
         self.decodeResultLabel = QtWidgets.QLabel(self.centralwidget)
-        self.decodeResultLabel.setGeometry(QtCore.QRect(50, 340, 111, 31))
+        self.decodeResultLabel.setGeometry(QtCore.QRect(50, 340, 114, 31))
+        self.decodeResultLabel.setStyleSheet("background-color: lightblue;border: 1px ridge black;")
         font = QtGui.QFont()
         font.setPointSize(11)
         self.decodeResultLabel.setFont(font)
         self.decodeResultLabel.setObjectName("decodeResultLabel")
         self.encodedData = QtWidgets.QLabel(self.centralwidget)
         self.encodedData.setGeometry(QtCore.QRect(180, 240, 521, 31))
+        # self.encodedData.setStyleSheet("color: #CF6C02; ")
+        self.encodedData.setStyleSheet("color: darkorange;")
         font = QtGui.QFont()
-        font.setPointSize(11)
+        font.setPointSize(13)
         self.encodedData.setFont(font)
-        self.encodedData.setObjectName("encodedData")
         self.encodedData.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.encodedData.setObjectName("encodedData")
         self.decodedData = QtWidgets.QLabel(self.centralwidget)
         self.decodedData.setGeometry(QtCore.QRect(180, 340, 521, 31))
+        self.decodedData.setStyleSheet("color: darkorange;")
         font = QtGui.QFont()
-        font.setPointSize(11)
+        font.setPointSize(13)
         self.decodedData.setFont(font)
-        self.decodedData.setObjectName("decodedData")
+        self.decodedData.setText("")
         self.decodedData.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.decodedData.setObjectName("decodedData")
         self.decodeButton = QtWidgets.QPushButton(self.centralwidget)
-        self.decodeButton.setGeometry(QtCore.QRect(400, 140, 121, 31))
+        self.decodeButton.setGeometry(QtCore.QRect(180, 140, 121, 31))
+        self.decodeButton.setStyleSheet("background-color: #009191; color: #fff; border-radius: 12px;")
         font = QtGui.QFont()
         font.setPointSize(10)
         self.decodeButton.setFont(font)
@@ -87,32 +83,20 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "LZ77 - LZ78"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "LZ77"))
         self.labelEnter.setText(_translate("MainWindow", "Enter encoded or decoded data"))
-        self.radioLz77.setText(_translate("MainWindow", "lz77"))
-        self.radioLz77.setChecked(True)
-        self.radioLz78.setText(_translate("MainWindow", "lz78"))
         self.encodeButton.setText(_translate("MainWindow", "Encode"))
         self.encodeResultLabel.setText(_translate("MainWindow", "Encoded data"))
         self.decodeResultLabel.setText(_translate("MainWindow", "Decoded data"))
         self.encodedData.setText(_translate("MainWindow", ""))
-        self.decodedData.setText(_translate("MainWindow", ""))
         self.decodeButton.setText(_translate("MainWindow", "Decode"))
 
     def encodeClicked(self, data):
-        if self.radioLz77.isChecked():
-            self.encodedData.setText(encoder77(data))
-        else:
-            print("Lz78 encoder")
-
+        self.encodedData.setText(encoder(data))
         self.encodedData.adjustSize()
 
     def decodeClicked(self, data):
-        if self.radioLz77.isChecked():
-            self.decodedData.setText(decoder77(data))
-        else:
-            self.decodedData.setText(decoder78(data))
-
+        self.decodedData.setText(decoder(data))
         self.decodedData.adjustSize()
 
 if __name__ == "__main__":

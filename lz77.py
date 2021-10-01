@@ -2,7 +2,7 @@
 
 
 # encoder function
-def encoder77(sentence):
+def encoder(sentence):
 
     search_Buffer = ""
     code = ""
@@ -46,7 +46,7 @@ def encoder77(sentence):
 
 
 # decoder function
-def decoder77(code):
+def decoder(code):
     code = code.replace("<", "")
     code = code.replace(">", "")
     code = code.replace(",", "")
