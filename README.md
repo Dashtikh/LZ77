@@ -1,6 +1,6 @@
 # LZ77 Encoder and Decoder
 
-### This project is a simple implementation of LZ77 algorithm  
+#### This project is a simple implementation of LZ77 algorithm  
 
 ## Requirements
 
